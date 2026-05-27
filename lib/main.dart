@@ -4,7 +4,6 @@ void main() {
   runApp(const CalculatorApp());
 }
 
-/// The root widget for the calculator application.
 class CalculatorApp extends StatelessWidget {
   const CalculatorApp({super.key});
 
@@ -23,7 +22,6 @@ class CalculatorApp extends StatelessWidget {
   }
 }
 
-/// The calculator screen with the display and button grid.
 class CalculatorScreen extends StatefulWidget {
   const CalculatorScreen({super.key});
 
@@ -46,7 +44,6 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
     '0', '', '', '='
   ];
 
-  /// Handles button taps and updates the calculator state.
   void _onPressed(String buttonText) {
     if (buttonText.isEmpty) return;
 
@@ -98,12 +95,10 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
     });
   }
 
-  /// Returns true when [text] is one of the calculator operators.
   bool _isOperator(String text) {
     return text == '+' || text == '-' || text == '*' || text == '/' || text == '=';
   }
 
-  /// Extracts the current operand text after the selected operator.
   String _currentOperandText() {
     if (operator.isEmpty) return input;
     final index = input.lastIndexOf(operator);
@@ -113,12 +108,10 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
     return input.substring(index + 1);
   }
 
-  /// Formats the displayed number without trailing .0 for integers.
   String _formatNumber(double value) {
     return value % 1 == 0 ? value.toInt().toString() : value.toString();
   }
 
-  /// Calculates the result for the current expression and updates the display.
   void _calculateResult() {
     final operandText = _currentOperandText();
     final currentInput = double.tryParse(operandText) ?? 0;
